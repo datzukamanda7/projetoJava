@@ -1,0 +1,43 @@
+public class SistemaAutenticacao {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Digite sua senha: ");
+        String senha = sc.nextLine();
+
+        if (senhaValida(senha)) {
+            System.out.println("Senha válida!");
+        } else {
+            System.out.println("Senha inválida!");
+        }
+
+        sc.close();
+    }
+
+    // Método privado e estático para validar a senha
+    private static boolean senhaValida(String senha) {
+        // Verifica se tem pelo menos 8 caracteres
+        if (senha.length() < 8) {
+            return false;
+        }
+
+        boolean temMaiuscula = false;
+        boolean temMinuscula = false;
+        boolean temNumero = false;
+
+        // Percorre cada caractere da senha
+        for (char c : senha.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                temMaiuscula = true;
+            } else if (Character.isLowerCase(c)) {
+                temMinuscula = true;
+            } else if (Character.isDigit(c)) {
+                temNumero = true;
+            }
+        }
+
+        // Retorna true apenas se todos os critérios forem atendidos
+        return temMaiuscula && temMinuscula && temNumero;
+    }
+}
